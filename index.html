@@ -4,14 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>אירועים במסעדת הצדף</title>
-  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Heebo:wght@500;700;800&display=swap" rel="stylesheet"/>
+
   <style>
     :root {
       --gold: #B89A5A;
+      --gold-soft: #f8f0dc;
       --dark: #1e2330;
       --navy: #2c3652;
       --white: #ffffff;
       --text: #222;
+      --muted: #666;
       --border: #c5b47a;
       --danger: #c0392b;
       --ok: #2e7d32;
@@ -70,8 +74,9 @@
     .logo-circle img { width: 100%; height: 100%; object-fit: cover; }
 
     .logo-text .main-title {
+      font-family: 'Heebo', 'Assistant', sans-serif;
       font-size: 48px;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--gold);
       letter-spacing: 2px;
       line-height: 1;
@@ -102,14 +107,37 @@
     .container {
       position: relative;
       z-index: 1;
-      max-width: 900px;
+      max-width: 920px;
       margin: 0 auto;
-      padding: 28px 20px 60px;
+      padding: 28px 20px 80px;
+    }
+
+    .intro-card {
+      background: rgba(255,255,255,0.96);
+      border: 1px solid rgba(184,154,90,0.45);
+      border-radius: 10px;
+      padding: 22px;
+      margin-bottom: 22px;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.22);
+    }
+
+    .intro-card h1 {
+      font-family: 'Heebo', 'Assistant', sans-serif;
+      color: var(--navy);
+      font-size: 25px;
+      margin-bottom: 8px;
+    }
+
+    .intro-card p {
+      color: #555;
+      font-size: 16px;
+      line-height: 1.7;
     }
 
     .section-card {
       background: rgba(255,255,255,0.97);
-      border-radius: 8px;
+      border-radius: 10px;
       margin-bottom: 22px;
       box-shadow: 0 4px 24px rgba(0,0,0,0.22);
       overflow: hidden;
@@ -117,19 +145,21 @@
 
     .section-header {
       background-color: var(--navy);
-      padding: 13px 22px;
+      padding: 14px 22px;
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
     .section-header h2 {
+      font-family: 'Heebo', 'Assistant', sans-serif;
       color: var(--gold);
-      font-size: 19px;
-      font-weight: 600;
-      letter-spacing: 1px;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
     }
 
+    .section-header span { font-size: 20px; }
     .section-body { padding: 22px; }
 
     .form-row {
@@ -145,7 +175,7 @@
     label {
       display: block;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--navy);
       margin-bottom: 5px;
     }
@@ -156,18 +186,19 @@
       width: 100%;
       padding: 11px 13px;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: 5px;
       font-family: 'Assistant', sans-serif;
       font-size: 16px;
       color: var(--text);
       background: #fafafa;
-      transition: border-color 0.2s, background 0.2s;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
       direction: rtl;
     }
 
     input:focus, select:focus, textarea:focus {
-      outline: 2px solid rgba(184,154,90,0.25);
+      outline: none;
       border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(184,154,90,0.18);
       background: #fff;
     }
 
@@ -175,25 +206,47 @@
 
     .required-star { color: var(--danger); margin-right: 2px; }
 
+    .price-badge,
+    .required-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gold-soft);
+      color: #8a6b2d;
+      border: 1px solid rgba(184,154,90,0.45);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 3px 9px;
+      margin-right: 6px;
+      white-space: nowrap;
+    }
+
+    .required-badge {
+      background: #fff3ef;
+      color: var(--danger);
+      border-color: rgba(192,57,43,0.25);
+    }
+
     .info-box {
       background: #f9f5ec;
       border-right: 3px solid var(--gold);
-      padding: 11px 15px;
+      padding: 12px 15px;
       margin-bottom: 14px;
-      border-radius: 2px;
+      border-radius: 4px;
       font-size: 14px;
       color: #555;
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     .info-static {
       background: #f3f0f9;
       border-right: 3px solid var(--navy);
-      padding: 10px 15px;
-      border-radius: 2px;
+      padding: 12px 15px;
+      border-radius: 4px;
       font-size: 14px;
       color: #444;
-      line-height: 1.7;
+      line-height: 1.75;
       margin-top: 10px;
     }
 
@@ -206,25 +259,19 @@
     .menu-category { margin-bottom: 18px; }
 
     .menu-category-title {
-      font-size: 16px;
-      font-weight: 700;
+      font-family: 'Heebo', 'Assistant', sans-serif;
+      font-size: 17px;
+      font-weight: 800;
       color: var(--gold);
       border-bottom: 1px solid var(--border);
-      padding-bottom: 5px;
-      margin-bottom: 10px;
-    }
-
-    .menu-sub-title {
-      font-size: 13px;
-      color: #777;
-      margin-bottom: 8px;
-      font-style: italic;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
     }
 
     .menu-items-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
-      gap: 8px;
+      gap: 10px;
     }
 
     .checkbox-item {
@@ -232,11 +279,24 @@
       align-items: flex-start;
       gap: 9px;
       cursor: pointer;
-      padding: 6px;
-      border-radius: 4px;
+      padding: 10px;
+      border-radius: 7px;
+      border: 1px solid #e3e0d7;
+      background: #fff;
+      transition: all 0.18s;
+      min-height: 45px;
     }
 
-    .checkbox-item:hover { background: #f7f3eb; }
+    .checkbox-item:hover {
+      background: #fdf8f0;
+      border-color: rgba(184,154,90,0.55);
+    }
+
+    .checkbox-item.selected {
+      background: #f9f1df;
+      border-color: var(--gold);
+      box-shadow: inset 0 0 0 1px rgba(184,154,90,0.25);
+    }
 
     .checkbox-item input[type="checkbox"] {
       width: 20px;
@@ -251,10 +311,11 @@
 
     .checkbox-item label {
       font-size: 15px;
-      font-weight: 400;
+      font-weight: 500;
       color: var(--text);
       cursor: pointer;
       margin: 0;
+      line-height: 1.35;
     }
 
     .radio-group {
@@ -271,7 +332,7 @@
       cursor: pointer;
       padding: 10px 15px;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: 7px;
       background: #fafafa;
       transition: all 0.2s;
     }
@@ -280,6 +341,7 @@
     .radio-item.selected {
       border-color: var(--gold);
       background: #fdf8f0;
+      box-shadow: inset 0 0 0 1px rgba(184,154,90,0.18);
     }
 
     .radio-item input[type="radio"] {
@@ -290,16 +352,16 @@
 
     .radio-item label {
       font-size: 15px;
-      font-weight: 400;
+      font-weight: 600;
       color: var(--text);
       cursor: pointer;
       margin: 0;
     }
 
     .count {
-      margin-top: 8px;
+      margin-top: 10px;
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--navy);
     }
 
@@ -310,13 +372,13 @@
       display: none;
       color: var(--danger);
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 800;
       margin-top: 7px;
     }
 
     .summary-card {
       background: var(--navy);
-      border-radius: 8px;
+      border-radius: 10px;
       margin-bottom: 22px;
       box-shadow: 0 4px 24px rgba(0,0,0,0.25);
       overflow: hidden;
@@ -324,7 +386,7 @@
 
     .summary-header {
       background: var(--dark);
-      padding: 13px 22px;
+      padding: 14px 22px;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -332,10 +394,10 @@
     }
 
     .summary-header h2 {
+      font-family: 'Heebo', 'Assistant', sans-serif;
       color: var(--gold);
-      font-size: 19px;
-      font-weight: 700;
-      letter-spacing: 1px;
+      font-size: 20px;
+      font-weight: 800;
     }
 
     .summary-body { padding: 22px; }
@@ -356,14 +418,14 @@
     }
 
     .summary-row .s-label { color: #bbb; }
-    .summary-row .s-value { color: var(--gold); font-weight: 600; }
+    .summary-row .s-value { color: var(--gold); font-weight: 700; }
 
     .summary-total {
       padding: 14px 0 6px;
       margin-top: 6px;
       border-top: 2px solid var(--gold);
       font-size: 20px;
-      font-weight: 700;
+      font-weight: 800;
       color: #fff;
     }
 
@@ -391,8 +453,8 @@
       padding: 15px 36px;
       font-family: 'Assistant', sans-serif;
       font-size: 18px;
-      font-weight: 700;
-      border-radius: 4px;
+      font-weight: 800;
+      border-radius: 5px;
       cursor: pointer;
       letter-spacing: 1px;
       transition: all 0.2s;
@@ -439,14 +501,30 @@
 
     .thank-you {
       display: none;
-      background: rgba(255,255,255,0.97);
-      border-radius: 8px;
-      padding: 30px;
+      background: rgba(255,255,255,0.98);
+      border-radius: 12px;
+      padding: 34px;
       text-align: center;
       box-shadow: 0 4px 24px rgba(0,0,0,0.22);
+      border: 1px solid rgba(184,154,90,0.35);
+    }
+
+    .thank-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--gold-soft);
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+      margin: 0 auto 14px;
+      border: 1px solid rgba(184,154,90,0.45);
     }
 
     .thank-you h2 {
+      font-family: 'Heebo', 'Assistant', sans-serif;
       color: var(--gold);
       font-size: 30px;
       margin-bottom: 10px;
@@ -456,6 +534,24 @@
       font-size: 17px;
       line-height: 1.7;
       color: #333;
+    }
+
+    .next-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 22px;
+      text-align: center;
+    }
+
+    .step {
+      background: #faf8f2;
+      border: 1px solid rgba(184,154,90,0.25);
+      border-radius: 8px;
+      padding: 12px;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 14px;
     }
 
     .modal-backdrop {
@@ -471,7 +567,7 @@
 
     .modal {
       background: #fff;
-      border-radius: 8px;
+      border-radius: 10px;
       max-width: 760px;
       width: 100%;
       max-height: 88vh;
@@ -484,7 +580,8 @@
       color: var(--gold);
       padding: 16px 20px;
       font-size: 20px;
-      font-weight: 700;
+      font-weight: 800;
+      font-family: 'Heebo', 'Assistant', sans-serif;
     }
 
     .modal-body {
@@ -502,6 +599,39 @@
       flex-wrap: wrap;
     }
 
+    .mobile-sticky-summary {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      z-index: 18;
+      background: rgba(30,35,48,0.96);
+      border-top: 2px solid var(--gold);
+      color: #fff;
+      padding: 10px 12px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      box-shadow: 0 -4px 18px rgba(0,0,0,0.25);
+    }
+
+    .mobile-sticky-summary strong {
+      color: var(--gold);
+      font-size: 18px;
+    }
+
+    .mobile-sticky-summary button {
+      background: var(--gold);
+      color: #fff;
+      border: 0;
+      border-radius: 5px;
+      padding: 9px 12px;
+      font-family: 'Assistant', sans-serif;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
     @media (max-width: 600px) {
       body { background-attachment: scroll; }
       .page-header { padding: 24px 16px; }
@@ -509,7 +639,8 @@
       .logo-circle { width: 64px; height: 64px; }
       .logo-text .main-title { font-size: 36px; }
       .page-title { font-size: 22px; }
-      .container { padding: 20px 12px 50px; }
+      .container { padding: 20px 12px 90px; }
+      .intro-card h1 { font-size: 21px; }
       .section-body, .summary-body { padding: 18px; }
       .form-row { flex-direction: column; gap: 12px; }
       .form-group { min-width: unset; }
@@ -518,6 +649,8 @@
       .submit-btn, .secondary-btn { width: 100%; padding: 15px 18px; }
       .summary-row, .summary-total { align-items: flex-start; }
       .summary-total .s-value { font-size: 21px; }
+      .next-steps { grid-template-columns: 1fr; }
+      .mobile-sticky-summary { display: flex; }
     }
   </style>
 </head>
@@ -528,17 +661,25 @@
   <div class="logo-container">
     <div class="logo-text">
       <div class="main-title">הצדף</div>
-      <div class="sub-title">מסעדת הדגים ופירות הים של ראשון לציון</div>
+      <div class="sub-title">מסעדת הדגים של ראשון לציון</div>
     </div>
     <div class="logo-circle">
       <img src="https://media.base44.com/images/public/6a01bc0bf7391ac07f7a853e/b2bf014df_aa7637b2-8d58-44c2-a4e9-91c7f3430ac8.jpg" alt="הצדף לוגו" onerror="this.style.display='none'"/>
     </div>
   </div>
-  <div class="page-title">בחירת תפריט לאירוע</div>
+  <div class="page-title">טופס לבניית תפריט אירוע פרטי</div>
   <div class="gold-line"></div>
 </div>
 
 <div class="container">
+
+<div class="intro-card">
+  <h1>כמעט סיימנו — בוחרים תפריט ומעדכנים פרטים</h1>
+  <p>
+    מלאו את פרטי האירוע, בחרו את המנות והעדפות ההגשה, ואנחנו נחזור אליכם לאישור סופי, דגשים והשלמות במידת הצורך.
+  </p>
+</div>
+
 <form id="eventForm" novalidate>
 
   <div class="section-card">
@@ -553,7 +694,7 @@
         <div class="form-group">
           <label for="phone">טלפון נייד <span class="required-star">*</span></label>
           <input type="tel" id="phone" inputmode="tel" autocomplete="tel" placeholder="050-0000000" required />
-          <div class="error-text" id="phoneError">נא להזין מספר נייד ישראלי תקין.</div>
+          <div class="error-text" id="phoneError">נא להזין מס׳ נייד תקין.</div>
         </div>
       </div>
 
@@ -572,7 +713,7 @@
       <div class="form-row">
         <div class="form-group">
           <label for="eventDate">תאריך האירוע <span class="required-star">*</span></label>
-          <input type="date" id="eventDate" required />
+          <input type="date" id="eventDate" required onchange="syncDayFromDate(); updateSummary();" />
         </div>
 
         <div class="form-group">
@@ -595,35 +736,26 @@
         </div>
 
         <div class="form-group">
-          <label for="guestCount">מספר מוזמנים כולל ילדים <span class="required-star">*</span></label>
+          <label for="guestCount">מס' מוזמנים מינימלי? (כולל ילדים) <span class="required-star">*</span></label>
           <input type="number" id="guestCount" min="20" max="120" placeholder="מינ׳ 20" required oninput="updateSummary()" />
         </div>
       </div>
 
       <div class="form-row">
-        <div class="form-group">
-          <label for="eventType">סוג האירוע</label>
-          <select id="eventType">
-            <option value="">בחר סוג אירוע...</option>
-            <option>יום הולדת</option>
-            <option>בר/בת מצווה</option>
-            <option>אירוע חברה / עסקי</option>
-            <option>מסיבת סיום / פרישה</option>
-            <option>ארוחת חג</option>
-            <option>אחר</option>
-          </select>
+        <div class="form-group full">
+          <label for="eventReason">מה חוגגים?</label>
+          <input type="text" id="eventReason" placeholder="לדוגמה: יום הולדת 60, אירוע חברה, בר מצווה..." />
         </div>
+      </div>
 
+      <div class="form-row">
         <div class="form-group">
           <label for="seatingStyle">סידור ישיבה / אופי האירוע</label>
           <select id="seatingStyle">
             <option value="">בחר אם ידוע...</option>
-            <option>ישיבה רגילה סביב שולחנות</option>
-            <option>שולחן אבירים / שולחן ארוך</option>
-            <option>אירוע עסקי / ישיבת הנהלה</option>
-            <option>אירוע משפחתי</option>
-            <option>כולל נאומים / ברכות</option>
-            <option>כולל מצגת / הקרנה</option>
+            <option>שולחן אחד</option>
+            <option>שני שולחנות</option>
+            <option>שולחן בצורת "ח"</option>
             <option>לא בטוח / אשמח להתייעץ</option>
           </select>
         </div>
@@ -631,7 +763,7 @@
 
       <div class="form-row">
         <div class="form-group full">
-          <label>ציוד / צרכים מיוחדים</label>
+          <label>צריכים משהו?</label>
           <div class="menu-items-grid">
             <div class="checkbox-item"><input type="checkbox" class="equipment-check" value="מקרן"/><label>מקרן</label></div>
             <div class="checkbox-item"><input type="checkbox" class="equipment-check" value="מיקרופון"/><label>מיקרופון</label></div>
@@ -650,15 +782,19 @@
     <div class="section-body">
 
       <div class="info-box">
-        שתייה קלה כלולה לכל האורחים — בקבוקים אישיים: קוקה קולה, קולה זירו, ספרייט, ספרייט זירו, אשכוליות, תפוזים, ענבים, פיוז טי, בירה שחורה, סודה, קנקני מים ולימונדה קרה.
+        <strong>כלול במחיר:</strong> שתייה קלה בבקבוקים אישיים, קנקני מים ולימונדה קרה.
       </div>
 
       <div class="menu-category">
-        <div class="menu-category-title">כוסות יין ובירה <span style="font-size:12px;color:#999;">30 ש״ח לסועד</span></div>
+        <div class="menu-category-title">
+          כוסות יין הבית ובירה מהחבית
+          <span class="price-badge">30 ש״ח לסועד</span>
+        </div>
+
         <div class="radio-group" id="wineOption">
           <div class="radio-item selected" onclick="selectRadio(this,'wineOption')">
             <input type="radio" name="wineOption" value="yes" checked />
-            <label>כן — 30 ש״ח לסועד</label>
+            <label>כן, נשמח</label>
           </div>
           <div class="radio-item" onclick="selectRadio(this,'wineOption')">
             <input type="radio" name="wineOption" value="no" />
@@ -668,7 +804,7 @@
 
         <div class="info-static">
           יין הבית – אביב אדום, יקב הרי גליל / ריזלינג, גמלא, יקבי רמת הגולן<br/>
-          בירות מהחבית – קרלסברג וטובורג אדום
+          בירות מהחבית – קרלסברג, בלאנק 1664 וטובורג אדום
         </div>
       </div>
 
@@ -677,7 +813,7 @@
       <div class="menu-category">
         <div class="menu-category-title">אלכוהול מהבית</div>
         <div class="info-static">
-          ניתן להביא אלכוהול מהבית. הבאת אלכוהול כרוכה בדמי חליצה: ₪100 לבקבוק יין, ו־₪150 ומעלה לבקבוקי אלכוהול אחרים. החיוב ייבדק ויתווסף ידנית במידת הצורך.
+        עבור אלכוהול שלא נמצא בתפריט המסעדה, תוכלו להביא מהבית בתשלום דמי חליצה של 100 ש"ח עבור כל בקבוק יין שנפתח, ו150 עבור כל בקבוק אלכוהול מסוג אחר שנפתח.
         </div>
       </div>
 
@@ -685,9 +821,13 @@
   </div>
 
   <div class="section-card" id="saladsSection">
-    <div class="section-header"><span>🥗</span><h2>סלטי פתיחה ולחמים — 8 לבחירה</h2></div>
+    <div class="section-header"><span>🥗</span><h2>סלטי פתיחה ולחמים</h2></div>
     <div class="section-body">
-      <div class="info-box">יש לבחור בדיוק 8 סלטים מהרשימה. הלחם הוא לחם מחמצת לבן ושחור.</div>
+      <div class="info-box">
+        <strong>8 סלטים לבחריתכם.</strong>
+        <span class="required-badge">8 לבחירה</span>
+       יחד עם הסלטים מוגש לחם מחמצת שחור ולבן חם וטרי.
+      </div>
 
       <div class="menu-items-grid">
         <div class="checkbox-item"><input type="checkbox" class="salad-check" value="כרוב וגזר"/><label>כרוב וגזר</label></div>
@@ -707,14 +847,17 @@
 
       <div id="saladCount" class="count">נבחרו: 0 / 8</div>
       <div class="error-text" id="saladError">יש לבחור בדיוק 8 סלטים.</div>
-      <div class="info-static">🍞 לחם: לחם מחמצת לבן + לחם מחמצת שחור — מוגש לשולחן</div>
     </div>
   </div>
 
   <div class="section-card" id="interSection">
-    <div class="section-header"><span>🌸</span><h2>מנות ביניים — 3 לבחירה</h2></div>
+    <div class="section-header"><span>🌸</span><h2>מנות ביניים</h2></div>
     <div class="section-body">
-      <div class="info-box">במרכז שולחן — 40 ש״ח לסועד. אם מוסיפים מנות ביניים, יש לבחור בדיוק 3 מנות.</div>
+      <div class="info-box">
+        מוגשות למרכז השולחן.
+        <span class="price-badge">40 ש״ח לסועד</span>
+        אם בוחרים מנות ביניים — חובה לבחור בדיוק 3.
+      </div>
 
       <div class="radio-group" id="interOption">
         <div class="radio-item selected" onclick="selectRadio(this,'interOption')">
@@ -729,12 +872,12 @@
 
       <div id="interMenuSection" style="display:block;margin-top:14px;">
         <div class="menu-items-grid">
-          <div class="checkbox-item"><input type="checkbox" class="inter-check" value="פטריות מוקפצות בשום, שמן זית ובזיליקום"/><label>פטריות מוקפצות בשום, שמן זית ובזיליקום</label></div>
-          <div class="checkbox-item"><input type="checkbox" class="inter-check" value="סלט קריספי (כרוב, צ'ילי, כוסברה, רוטב חמאת בוטנים + צ'יקן/שרימפס)"/><label>סלט קריספי</label></div>
+          <div class="checkbox-item"><input type="checkbox" class="inter-check" value="פטריות מוקפצות בשום, שמן זית ובזיליקום"/><label>פטריות מוקפצות על מחבת לוהטת בשום, שמן זית ובזיליקום</label></div>
+          <div class="checkbox-item"><input type="checkbox" class="inter-check" value="סלט קריספי"/><label>סלט קריספי</label></div>
           <div class="checkbox-item"><input type="checkbox" class="inter-check" value="קרפצ'יו פילה בקר בליווי פרמזן"/><label>קרפצ'יו פילה בקר בליווי פרמזן</label></div>
-          <div class="checkbox-item"><input type="checkbox" class="inter-check" value="סביצה סלמון"/><label>סביצה סלמון</label></div>
+          <div class="checkbox-item"><input type="checkbox" class="inter-check" value="סביצ'ה סלמון"/><label>סביצ'ה סלמון</label></div>
           <div class="checkbox-item"><input type="checkbox" class="inter-check" value="פרח כרובית מטוגנת עם סילאן, טחינה ופיצוחים"/><label>פרח כרובית מטוגנת</label></div>
-          <div class="checkbox-item"><input type="checkbox" class="inter-check" value="חציל קלוי עם טחינה גולמית, סילאן, תימין וגבינת טולום"/><label>חציל קלוי עם טחינה גולמית, סילאן, תימין וגבינת טולום</label></div>
+          <div class="checkbox-item"><input type="checkbox" class="inter-check" value="חציל קלוי עם טחינה גולמית, סילאן, תימין וגבינת טולום"/><label>חציל בסגנון ים-תיכוני עם טחינה גולמית, סילאן, טימין וגבינת טולום</label></div>
         </div>
 
         <div id="interCount" class="count">נבחרו: 0 / 3</div>
@@ -744,9 +887,13 @@
   </div>
 
   <div class="section-card" id="mainSection">
-    <div class="section-header"><span>🍽️</span><h2>מנות עיקריות — 6 לבחירה</h2></div>
+    <div class="section-header"><span>🍽️</span><h2>מנות עיקריות</h2></div>
     <div class="section-body">
-      <div class="info-box">יש לבחור בדיוק 6 מנות עיקריות: שילוב חופשי מדגים, בשרים ופירות ים.</div>
+      <div class="info-box">
+        <strong>חובה לבחור בדיוק 6 מנות עיקריות.</strong>
+        <span class="required-badge">6 לבחירה</span>
+        ניתן לשלב חופשי דגים, בשרים ופירות ים.
+      </div>
 
       <div class="menu-category-title">דגים</div>
       <div class="menu-items-grid">
@@ -781,7 +928,7 @@
 
       <div class="menu-category-title">מנות צמחוניות / טבעוניות</div>
       <div class="info-static">
-        ניתן להזמין מנות צמחוניות וטבעוניות במועד האירוע, ולכן אין צורך לבחור אותן מראש בטופס.<br/><br/>
+        <strong>ניתן להזמין במועד האירוע, אין צורך לבחור מראש:</strong><br/>
         <strong>צמחוני:</strong> ריזוטו שמנת פטריות, פסטות ברטבים.<br/>
         <strong>טבעוני:</strong> המבורגר ביונד, ריזוטו שמן זית וירקות שורש.
       </div>
@@ -792,7 +939,10 @@
       <div class="divider"></div>
 
       <div id="sideSection">
-        <div class="menu-category-title">תוספות לצד המנה העיקרית — 2 לבחירה</div>
+        <div class="menu-category-title">
+          תוספות לצד המנה העיקרית
+          <span class="required-badge">2 לבחירה</span>
+        </div>
         <div class="menu-items-grid">
           <div class="checkbox-item"><input type="checkbox" class="side-check" value="פירה חלבי"/><label>פירה חלבי</label></div>
           <div class="checkbox-item"><input type="checkbox" class="side-check" value="אורז לבן"/><label>אורז לבן</label></div>
@@ -808,7 +958,7 @@
   </div>
 
   <div class="section-card">
-    <div class="section-header"><span>👶</span><h2>מנות ילדים (עד גיל 10)</h2></div>
+    <div class="section-header"><span>👶</span><h2>מנות ילדים עד גיל 10</h2></div>
     <div class="section-body">
       <div class="form-row">
         <div class="form-group" style="max-width:260px;">
@@ -818,7 +968,7 @@
       </div>
 
       <div class="info-static">
-        מנות הילדים ייקבעו במועד האירוע ואין צורך לבחור אותן מראש.<br/>
+        <strong>מנות הילדים ייקבעו במועד האירוע ואין צורך לבחור מראש.</strong><br/>
         כל מנת ילדים כוללת צ'יפס.<br/><br/>
         <strong>אפשרויות לילדים:</strong><br/>
         שניצלונים וצ'יפס • סטייק פרגית וצ'יפס • פילה דניס וצ'יפס • פסטה ברוטב עגבניות • פסטה שמנת פטריות
@@ -849,14 +999,13 @@
           <div class="checkbox-item"><input type="checkbox" class="diet-check" value="צמחונים"/><label>צמחונים</label></div>
           <div class="checkbox-item"><input type="checkbox" class="diet-check" value="טבעונים"/><label>טבעונים</label></div>
           <div class="checkbox-item"><input type="checkbox" class="diet-check" value="ללא גלוטן"/><label>ללא גלוטן</label></div>
-          <div class="checkbox-item"><input type="checkbox" class="diet-check" value="אלרגיות חמורות"/><label>אלרגיות חמורות</label></div>
           <div class="checkbox-item"><input type="checkbox" class="diet-check" value="לא בטוח"/><label>לא בטוח / נעדכן בהמשך</label></div>
         </div>
       </div>
 
       <div class="form-group full" style="margin-top:14px;">
         <label for="allergies">אלרגיות / דיאטות / בקשות מיוחדות</label>
-        <textarea id="allergies" placeholder="לדוגמה: 3 סועדים ללא גלוטן, 2 טבעוניים, אלרגיה חמורה לאגוזים..."></textarea>
+        <textarea id="allergies" placeholder="לדוגמה: 3 סועדים ללא גלוטן, 2 טבעוניים, רגישות מסוימת..."></textarea>
       </div>
 
       <div class="form-group full" style="margin-top:12px;">
@@ -866,7 +1015,7 @@
     </div>
   </div>
 
-  <div class="summary-card">
+  <div class="summary-card" id="summaryCard">
     <div class="summary-header"><span>💰</span><h2>סיכום מחיר משוער</h2></div>
     <div class="summary-body">
 
@@ -926,7 +1075,7 @@
   </div>
 
   <div class="info-box" style="text-align:center;margin-top:10px;">
-    שליחת הטופס אינה מהווה אישור סופי להזמנה. לאחר קבלת הפרטים, המסעדה תבחן את הבקשה ותחזור אליך לאישור סופי, דגשים והשלמות במידת הצורך.
+    <strong>חשוב לדעת:</strong> שליחת הטופס אינה מהווה אישור סופי להזמנה. לאחר קבלת הפרטים, המסעדה תבחן את הבקשה ותחזור אליך לאישור סופי, דגשים והשלמות במידת הצורך.
   </div>
 
   <div class="submit-section">
@@ -936,11 +1085,19 @@
 </form>
 
 <div class="thank-you" id="thankYou">
-  <h2>✅ הטופס נשלח בהצלחה</h2>
+  <div class="thank-icon">✓</div>
+  <h2>הטופס נשלח בהצלחה</h2>
   <p>
     קיבלנו את בחירת התפריט ופרטי האירוע.<br/>
     הבקשה תיבדק על ידי המסעדה, ולאחר מכן נחזור אליך לאישור סופי, דגשים והשלמות במידת הצורך.
   </p>
+
+  <div class="next-steps">
+    <div class="step">1. קיבלנו את הבקשה</div>
+    <div class="step">2. בודקים את הפרטים</div>
+    <div class="step">3. חוזרים לאישור סופי</div>
+  </div>
+
   <div class="info-static" style="text-align:right;margin-top:20px;">
     טל': 03-9627111<br/>
     ניב: 050-6536629<br/>
@@ -953,6 +1110,14 @@
   טל': 03-9627111 &bull; פקס: 03-9513006 &bull; ניב: 050-6536629<br/>
   מייל: zedefr@gmail.com &bull; ח.פ: 513424937 &bull; אתר: www.zedef.co.il
 </div>
+</div>
+
+<div class="mobile-sticky-summary">
+  <div>
+    סה״כ משוער<br/>
+    <strong id="mobileTotal">₪0</strong>
+  </div>
+  <button type="button" onclick="document.getElementById('summaryCard').scrollIntoView({behavior:'smooth'});">לסיכום</button>
 </div>
 
 <div class="modal-backdrop" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
@@ -1005,6 +1170,15 @@
     return checked(selector).length;
   }
 
+  function syncDayFromDate() {
+    const dateVal = v('eventDate');
+    if (!dateVal) return;
+
+    const d = new Date(dateVal + 'T00:00:00');
+    const days = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+    document.getElementById('eventDay').value = days[d.getDay()];
+  }
+
   function isWeekendDay() {
     return ['fri', 'sat'].includes(v('eventDay'));
   }
@@ -1012,6 +1186,13 @@
   function eventDayText() {
     const select = document.getElementById('eventDay');
     return select.selectedOptions[0]?.text || '—';
+  }
+
+  function updateCheckboxVisuals(selector) {
+    document.querySelectorAll(selector).forEach(cb => {
+      const item = cb.closest('.checkbox-item');
+      if (item) item.classList.toggle('selected', cb.checked);
+    });
   }
 
   function updateCount(selector, countId, max) {
@@ -1027,6 +1208,7 @@
   function updateDisabled(selector, max) {
     const boxes = [...document.querySelectorAll(selector)];
     const c = boxes.filter(b => b.checked).length;
+
     boxes.forEach(b => {
       b.disabled = !b.checked && c >= max;
     });
@@ -1037,17 +1219,28 @@
       cb.addEventListener('change', () => {
         updateCount(selector, countId, max);
         updateDisabled(selector, max);
+        updateCheckboxVisuals(selector);
       });
     });
 
     updateCount(selector, countId, max);
     updateDisabled(selector, max);
+    updateCheckboxVisuals(selector);
+  }
+
+  function setupVisualOnly(selector) {
+    document.querySelectorAll(selector).forEach(cb => {
+      cb.addEventListener('change', () => updateCheckboxVisuals(selector));
+    });
+    updateCheckboxVisuals(selector);
   }
 
   setupLimit('.salad-check', 'saladCount', 8);
   setupLimit('.inter-check', 'interCount', 3);
   setupLimit('.main-check', 'mainCount', 6);
   setupLimit('.side-check', 'sideCount', 2);
+  setupVisualOnly('.equipment-check');
+  setupVisualOnly('.diet-check');
 
   function updateSummary() {
     const isWeekend = isWeekendDay();
@@ -1066,6 +1259,7 @@
     const kidsTotal = kids * baseKid;
     const totalBase = adultChargeCount * perPerson + kidsTotal;
     const service = totalBase * 0.15;
+    const totalWithService = totalBase + service;
 
     document.getElementById('basePriceLabel').textContent = isWeekend ? 'מחיר בסיס לאדם (שישי–שבת)' : 'מחיר בסיס לאדם (ראשון–חמישי)';
     document.getElementById('basePriceVal').textContent = fmt(baseAdult);
@@ -1093,7 +1287,8 @@
 
     document.getElementById('totalBeforeService').textContent = fmt(totalBase);
     document.getElementById('serviceCharge').textContent = fmt(service);
-    document.getElementById('totalWithService').textContent = fmt(totalBase + service);
+    document.getElementById('totalWithService').textContent = fmt(totalWithService);
+    document.getElementById('mobileTotal').textContent = fmt(totalWithService);
   }
 
   function isValidIsraeliMobile(phone) {
@@ -1202,7 +1397,7 @@
 מספר מוזמנים כולל ילדים: ${guests}
 מנות ילדים מתוך כלל המוזמנים: ${kids}
 מספר בוגרים לחיוב: ${adultChargeCount}
-סוג אירוע: ${v('eventType') || '—'}
+מה חוגגים: ${v('eventReason') || '—'}
 סידור ישיבה / אופי האירוע: ${v('seatingStyle') || '—'}
 ציוד / צרכים מיוחדים: ${equipment}
 
@@ -1299,6 +1494,10 @@ ${kids > 0 ? 'מנות ילדים: ' + kids + ' × ' + fmt(baseKid) + ' = ' + fm
   });
 
   document.getElementById('eventDay').addEventListener('change', updateSummary);
+  document.getElementById('eventDate').addEventListener('change', function() {
+    syncDayFromDate();
+    updateSummary();
+  });
   document.getElementById('guestCount').addEventListener('input', updateSummary);
   document.getElementById('kidsCount').addEventListener('input', updateSummary);
 
