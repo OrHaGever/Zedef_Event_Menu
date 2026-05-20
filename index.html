@@ -1312,17 +1312,8 @@
     updateProgress();
   });
 
-  // set min date to today and show the local success screen after a confirmed email redirect
+  // set min date to today
   document.addEventListener('DOMContentLoaded', () => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('sent') === '1') {
-      document.getElementById('eventForm').style.display = 'none';
-      document.getElementById('thankYou').style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'instant' });
-      window.history.replaceState({}, document.title, window.location.pathname);
-      return;
-    }
-
     const today = new Date().toISOString().split('T')[0];
     document.getElementById('eventDate').min = today;
   });
@@ -1724,16 +1715,18 @@ ${kids > 0 ? 'ילדים: ' + kids + ' × ' + fmt(baseKid) + ' = ' + fmt(kidsTot
     document.getElementById('confirmModal').style.display = 'none';
   }
 
+  const EMAIL_ENDPOINT_URL = 'https://script.google.com/macros/s/AKfycbz3-tRJ7FyKBA0_YczvMIIH4mNzId53Rp9kHnTg5_qgQlM8khRadGgXb-qEf2hIJh0KTg/exec';
+
   async function sendForm() {
     const btn = document.getElementById('finalSendBtn');
     const spinner = document.getElementById('sendSpinner');
     const btnText = document.getElementById('sendBtnText');
+
     btn.disabled = true;
     spinner.style.display = 'block';
-    btnText.textContent = 'מעביר לשליחה...';
+    btnText.textContent = 'שולח...';
 
     try {
-      // Build structured data for the email and for the existing management system.
       const structuredData = {
         full_name: v('fullName'),
         phone: v('phone'),
@@ -1755,77 +1748,52 @@ ${kids > 0 ? 'ילדים: ' + kids + ' × ' + fmt(baseKid) + ' = ' + fmt(kidsTot
         diet_flags: checked('.diet-check'),
         allergies: v('allergies'),
         notes: v('notes'),
+        email_body: pendingBody
       };
 
-      // Keep the original management-system call as best effort only.
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 20000);
+
+      const response = await fetch(EMAIL_ENDPOINT_URL, {
+        method: 'POST',
+        mode: 'cors',
+        redirect: 'follow',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
+        body: JSON.stringify(structuredData),
+        signal: controller.signal
+      });
+
+      clearTimeout(timeoutId);
+
+      const resultText = await response.text();
+      let result;
+
       try {
-        const managementPayload = JSON.stringify(structuredData);
-        if (navigator.sendBeacon) {
-          navigator.sendBeacon(
-            'https://6a0b0f1e49068f30aabb1f2d.base44.app/functions/receiveEventForm',
-            new Blob([managementPayload], { type: 'application/json' })
-          );
-        } else {
-          fetch('https://6a0b0f1e49068f30aabb1f2d.base44.app/functions/receiveEventForm', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: managementPayload,
-            keepalive: true
-          }).catch(() => {});
-        }
-      } catch (_) {}
-
-      // FormSubmit's regular HTML POST is used instead of AJAX so GitHub Pages/static hosting
-      // is not blocked by CORS or first-time activation responses.
-      const emailForm = document.createElement('form');
-      emailForm.method = 'POST';
-      emailForm.action = 'https://formsubmit.co/zedefr@gmail.com';
-      emailForm.style.display = 'none';
-      emailForm.acceptCharset = 'UTF-8';
-
-      function addEmailField(name, value) {
-        const field = document.createElement('textarea');
-        field.name = name;
-        field.value = Array.isArray(value) ? value.join(', ') : String(value ?? '');
-        emailForm.appendChild(field);
+        result = JSON.parse(resultText);
+      } catch (parseErr) {
+        throw new Error('שרת השליחה החזיר תשובה לא תקינה.');
       }
 
-      const currentPageUrl = window.location.href.split('#')[0].split('?')[0];
-      const canReturnToThisPage = /^https?:\/\//i.test(currentPageUrl);
+      if (!response.ok || !result.ok) {
+        throw new Error(result.error || 'שרת השליחה לא אישר שהמייל נשלח.');
+      }
 
-      addEmailField('_subject', 'בקשת אירוע חדשה — ' + structuredData.full_name + ' | ' + structuredData.event_date);
-      addEmailField('_template', 'table');
-      if (canReturnToThisPage) addEmailField('_next', currentPageUrl + '?sent=1');
-      if (structuredData.email) addEmailField('_replyto', structuredData.email);
-
-      addEmailField('שם מלא', structuredData.full_name);
-      addEmailField('טלפון', structuredData.phone);
-      addEmailField('אימייל לקוח', structuredData.email || '—');
-      addEmailField('חברה / ארגון', structuredData.company || '—');
-      addEmailField('תאריך האירוע', structuredData.event_date + ' — ' + getDayText());
-      addEmailField('שעת האירוע', structuredData.event_time || '—');
-      addEmailField('מספר מוזמנים כולל ילדים', structuredData.guest_count);
-      addEmailField('מנות ילדים', structuredData.kids_count);
-      addEmailField('סוג האירוע', structuredData.event_type || '—');
-      addEmailField('סידור ישיבה', structuredData.seating_style || '—');
-      addEmailField('ציוד / צרכים מיוחדים', structuredData.equipment.length ? structuredData.equipment : '—');
-      addEmailField('יין ובירה', structuredData.wine_option ? 'כן — 30 ש״ח לסועד' : 'לא');
-      addEmailField('מנות ביניים', structuredData.inter_option ? 'כן — 40 ש״ח לסועד' : 'ללא');
-      addEmailField('סלטים', structuredData.salads.length ? structuredData.salads : '—');
-      addEmailField('מנות ביניים שנבחרו', structuredData.inter_option ? (structuredData.inter_dishes.length ? structuredData.inter_dishes : '—') : 'ללא');
-      addEmailField('מנות עיקריות', structuredData.main_dishes.length ? structuredData.main_dishes : '—');
-      addEmailField('תוספות', structuredData.side_dishes.length ? structuredData.side_dishes : '—');
-      addEmailField('דיאטות / רגישויות', structuredData.diet_flags.length ? structuredData.diet_flags : '—');
-      addEmailField('אלרגיות / בקשות מיוחדות', structuredData.allergies || '—');
-      addEmailField('הערות נוספות', structuredData.notes || '—');
-      addEmailField('סיכום מלא', pendingBody || '—');
-
-      document.body.appendChild(emailForm);
-      emailForm.submit();
+      closeConfirm();
+      document.getElementById('eventForm').style.display = 'none';
+      document.getElementById('thankYou').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
 
     } catch (err) {
       console.error(err);
-      alert('אירעה תקלה בשליחת הבקשה. נא לנסות שוב או ליצור קשר ישירות עם המסעדה.');
+
+      let msg = 'הטופס לא נשלח. לא הוצג אישור הצלחה כי לא התקבל אישור אמיתי משרת השליחה.';
+      if (err.name === 'AbortError') {
+        msg = 'הטופס לא נשלח. שרת השליחה לא הגיב בזמן.';
+      }
+
+      alert(msg);
       btn.disabled = false;
       spinner.style.display = 'none';
       btnText.textContent = 'מאשר/ת ושולח/ת';
