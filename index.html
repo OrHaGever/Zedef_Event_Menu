@@ -369,13 +369,9 @@
 
     .checkbox-item input[type="checkbox"]:disabled {
       opacity: 0.35;
-      cursor: not-allowed;
     }
 
-    .checkbox-item input[type="checkbox"]:disabled + label { 
-      color: #bbb; 
-      cursor: not-allowed;
-    }
+    .checkbox-item input[type="checkbox"]:disabled + label { color: #bbb; cursor: default; }
 
     .checkbox-item label {
       font-size: 15px;
@@ -924,7 +920,7 @@
     <div class="section-body">
 
       <div class="info-box">
-        שתייה קלה כלולה לכל האורחים — בקבוקים אישיים: קוקה קולה, קולה זירו, ספרייט, ספרייט זירו, אשכוליות, תפוזים וקפה / תה
+        שתייה קלה כלולה לכל האורחים — בקבוקים אישיים: קוקה קולה, קולה זירו, ספרייט, ספרייט זירו, אשכוליות, תפוזים ועוד
       </div>
 
       <div class="menu-category">
@@ -951,7 +947,7 @@
       <div class="menu-category">
         <div class="menu-category-title">אלכוהול מהבית</div>
         <div class="info-static">
-          ניתן להביא אלכוהול מהבית. הבאת אלכוהול כרוכה בדמי חליצה: ₪100 לבקבוק יין, ו־₪150 ומעלה לבקבוקי אלכוהול אחרים.
+          ניתן להביא אלכוהול מהבית. הבאת אלכוהול כרוכה בדמי חליצה: ₪100 לבקבוק יין, ו־₪150 ומעלה לבקבוקי אלכוהול אחרים
         </div>
       </div>
 
@@ -1006,311 +1002,297 @@
         </div>
       </div>
 
-      <div id="interCoursesContainer" style="display:block;">
-        <div class="menu-items-grid" style="margin-top:14px;">
-          <div class="checkbox-item"><input type="checkbox" class="inter-check" value="פילה דג מטוגן"/><label>פילה דג מטוגן</label></div>
-          <div class="checkbox-item"><input type="checkbox" class="inter-check" value="כמון טוגן"/><label>כמון טוגן</label></div>
-          <div class="checkbox-item"><input type="checkbox" class="inter-check" value="דגים קטנים מטוגנים"/><label>דגים קטנים מטוגנים</label></div>
-          <div class="checkbox-item"><input type="checkbox" class="inter-check" value="קלמרי מטוגן"/><label>קלמרי מטוגן</label></div>
-          <div class="checkbox-item"><input type="checkbox" class="inter-check" value="גמבות בשום וזית"/><label>גמבות בשום וזית</label></div>
-          <div class="checkbox-item"><input type="checkbox" class="inter-check" value="פטריות בשום"/><label>פטריות בשום</label></div>
-          <div class="checkbox-item"><input type="checkbox" class="inter-check" value="עגבנייה וזית"/><label>עגבנייה וזית</label></div>
-          <div class="checkbox-item"><input type="checkbox" class="inter-check" value="זוקיני טוגן"/><label>זוקיני טוגן</label></div>
-          <div class="checkbox-item"><input type="checkbox" class="inter-check" value="חצילים במלח וזית"/><label>חצילים במלח וזית</label></div>
-        </div>
-
-        <div id="interCount" class="count-badge">
-          <span class="check-icon">✓</span>
-          <span class="count-text">נבחרו: 0 / 3</span>
-        </div>
-        <div class="error-text" id="interError">יש לבחור בדיוק 3 מנות ביניים.</div>
+      <div class="menu-items-grid" style="margin-top:14px;">
+        <div class="checkbox-item"><input type="checkbox" class="inter-check" value="דגים טריים בחמאה"/><label>דגים טריים בחמאה</label></div>
+        <div class="checkbox-item"><input type="checkbox" class="inter-check" value="פילה דג שדות"/><label>פילה דג שדות</label></div>
+        <div class="checkbox-item"><input type="checkbox" class="inter-check" value="שרימפס בשום"/><label>שרימפס בשום</label></div>
+        <div class="checkbox-item"><input type="checkbox" class="inter-check" value="עטלפים בתרום"/><label>עטלפים בתרום</label></div>
+        <div class="checkbox-item"><input type="checkbox" class="inter-check" value="חוד דגים"/><label>חוד דגים</label></div>
+        <div class="checkbox-item"><input type="checkbox" class="inter-check" value="דג מזומן"/><label>דג מזומן</label></div>
       </div>
+
+      <div id="interCount" class="count-badge">
+        <span class="check-icon">✓</span>
+        <span class="count-text">נבחרו: 0 / 3</span>
+      </div>
+      <div class="error-text" id="interError">יש לבחור בדיוק 3 מנות ביניים.</div>
     </div>
   </div>
 
-  <!-- ── 5. מנות ראשונות ├─ דגים ┤ ── -->
+  <!-- ── 5. קינוח ── -->
   <div class="section-card" data-section="5">
-    <div class="section-header"><span>🐟</span><h2>מנות ראשונות — דגים</h2></div>
+    <div class="section-header"><span>🍰</span><h2>קינוח — בחר עד 3</h2></div>
     <div class="section-body">
-      <div class="info-box">
-        בחר מיני סטים לפי מספר הסועדים. כל ערכה (סט) לוקחת מקום לאורך שולחן של ~1.5 מטר וכוללת מנה אחת לסועד.
-      </div>
-
-      <div class="menu-category">
-        <div class="menu-category-title">דגים ופירות ים ליום הולדת</div>
-        <div class="menu-items-grid">
-          <div class="checkbox-item"><input type="checkbox" class="fish-check" value="סט 1: דברדברה + סימלה" data-price="60"/><label>סט 1: דברדברה + סימלה</label></div>
-          <div class="checkbox-item"><input type="checkbox" class="fish-check" value="סט 2: דג סנונית + קרפיון" data-price="45"/><label>סט 2: דג סנונית + קרפיון</label></div>
-          <div class="checkbox-item"><input type="checkbox" class="fish-check" value="סט 3: סלמון + אנשובי" data-price="75"/><label>סט 3: סלמון + אנשובי</label></div>
-          <div class="checkbox-item"><input type="checkbox" class="fish-check" value="סט 4: דג אבוקדו + לברק" data-price="65"/><label>סט 4: דג אבוקדו + לברק</label></div>
-          <div class="checkbox-item"><input type="checkbox" class="fish-check" value="סט 5: פרוטאה + קשקוש" data-price="70"/><label>סט 5: פרוטאה + קשקוש</label></div>
-          <div class="checkbox-item"><input type="checkbox" class="fish-check" value="סט 6: דג קוקוציוס + בר" data-price="80"/><label>סט 6: דג קוקוציוס + בר</label></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ── 6. קינוח ── -->
-  <div class="section-card" data-section="6">
-    <div class="section-header"><span>🍰</span><h2>קינוח</h2></div>
-    <div class="section-body">
-      <div class="info-box"><strong>בחר אפשרות אחת בלבד</strong> לקינוח הפעם.</div>
+      <div class="info-box">בחר עד 3 קינוחות שונים לסיום ארוחה מושלמת.</div>
 
       <div class="menu-items-grid">
-        <div class="checkbox-item"><input type="radio" name="dessert" class="dessert-check" value="עוגה שוקולד"/><label>🍫 עוגת שוקולד</label></div>
-        <div class="checkbox-item"><input type="radio" name="dessert" class="dessert-check" value="עוגת שכבות"/><label>🎂 עוגת שכבות</label></div>
-        <div class="checkbox-item"><input type="radio" name="dessert" class="dessert-check" value="פרולה"/><label>🍮 פרולה</label></div>
-        <div class="checkbox-item"><input type="radio" name="dessert" class="dessert-check" value="פטיזיאל"/><label>✨ פטיזיאל</label></div>
+        <div class="checkbox-item"><input type="checkbox" class="dessert-check" value="עוגה שוקולד"/><label>🍫 עוגה שוקולד</label></div>
+        <div class="checkbox-item"><input type="checkbox" class="dessert-check" value="פרי טרי"/><label>🍓 פרי טרי</label></div>
+        <div class="checkbox-item"><input type="checkbox" class="dessert-check" value="גלידה"/><label>🍦 גלידה</label></div>
+        <div class="checkbox-item"><input type="checkbox" class="dessert-check" value="טירמיסו"/><label>✨ טירמיסו</label></div>
+        <div class="checkbox-item"><input type="checkbox" class="dessert-check" value="קרם ברולה"/><label>🔥 קרם ברולה</label></div>
       </div>
+
+      <div id="dessertCount" class="count-badge">
+        <span class="check-icon">✓</span>
+        <span class="count-text">נבחרו: 0 / 3</span>
+      </div>
+      <div class="error-text" id="dessertError">בחר עד 3 קינוחות בלבד.</div>
     </div>
   </div>
 
-  <!-- ── 7. הערות וביקורת ── -->
-  <div class="section-card" data-section="7">
-    <div class="section-header"><span>📝</span><h2>הערות וביקורות</h2></div>
-    <div class="section-body">
-      <div class="form-row">
-        <div class="form-group full">
-          <label for="notes">הערות חשובות לחברה</label>
-          <textarea id="notes" name="notes" placeholder="למשל: אלרגיות, דרישות דיאטטיות, דרישות מיוחדות וכו׳"></textarea>
-        </div>
-      </div>
+  <!-- ── SUMMARY ── -->
+  <div class="section-card" id="summaryCard" data-section="6" style="position:sticky;bottom:0;z-index:5;">
+    <div class="summary-header"><span>📊</span><h2>סיכום בחירות</h2></div>
+    <div class="summary-body" id="summaryContent">
+      <div style="text-align:center;color:#999;">בחר פריטים כדי לראות סיכום</div>
     </div>
-  </div>
-
-  <!-- ── SUBMIT ── -->
-  <div class="submit-section">
-    <button type="submit" class="submit-btn">
-      <span class="spinner"></span>
-      <span>שליחת בחירה</span>
-    </button>
+    <div class="submit-section">
+      <button type="button" class="submit-btn" id="submitBtn" onclick="validateAndShowConfirm()" disabled>
+        <span class="spinner" id="spinner"></span>
+        <span>✓ אישור ושליחה</span>
+      </button>
+    </div>
   </div>
 
 </form>
 </div>
 
-<!-- SUMMARY SIDEBAR -->
+<!-- STICKY SUMMARY (SIDE) -->
 <div class="sticky-summary">
   <div class="summary-card">
-    <div class="summary-header">
-      <span>💰</span>
-      <h2>סיכום הזמנה</h2>
-    </div>
+    <div class="summary-header"><span>📋</span><h2>סה״כ משוער</h2></div>
     <div class="summary-body">
       <div class="summary-row">
-        <span class="s-label">מספר אורחים:</span>
-        <span class="s-value" id="summaryGuests">-</span>
+        <span class="s-label">סה״כ בתשלום:</span>
+        <span class="s-value" id="totalAmount">₪0</span>
       </div>
-      <div class="summary-row">
-        <span class="s-label">סלטים:</span>
-        <span class="s-value" id="summarySalads">0/8</span>
-      </div>
-      <div class="summary-row">
-        <span class="s-label">מנות ביניים:</span>
-        <span class="s-value" id="summaryInter">לא</span>
-      </div>
-      <div class="summary-row">
-        <span class="s-label">דגים:</span>
-        <span class="s-value" id="summaryFish">0</span>
-      </div>
-      <div class="summary-row">
-        <span class="s-label">קינוח:</span>
-        <span class="s-value" id="summaryDessert">-</span>
-      </div>
-      <div class="summary-total">
-        <span class="s-label">עלות משוערת:</span>
-        <span class="s-value" id="totalPrice">0 ש״ח</span>
-      </div>
-      <div class="summary-note">
-        * המחירים משוערים בלבד ותלויים בבחירות הסופיות. תקבלו הצעת מחיר מדויקת.
-      </div>
+    </div>
+    <div class="summary-note">
+      *מחיר משוער על סמך בחירותיך<br/>
+      מחיר סופי אחרי אישור המסעדה
     </div>
   </div>
 </div>
 
 </div>
 
-<!-- SUCCESS MODAL -->
-<div class="modal-backdrop" id="successModal">
+<div class="footer-contact">
+  טל': 03-9627111 &bull; פקס: 03-9513006 &bull; ניב: 050-6536629<br/>
+  מייל: zedefr@gmail.com &bull; ח.פ: 513424937 &bull; אתר: www.zedef.co.il
+</div>
+
+<div class="mobile-sticky-summary">
+  <div>
+    סה״כ משוער<br/>
+    <strong id="mobileTotal">₪0</strong>
+  </div>
+  <button type="button" onclick="document.getElementById('summaryCard').scrollIntoView({behavior:'smooth'});">לסיכום</button>
+</div>
+
+<div class="modal-backdrop" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
   <div class="modal">
-    <div class="modal-header">
-      <span>✓</span>
-      <span>הזמנה בוצעה בהצלחה!</span>
-    </div>
-    <div class="modal-body">
-      <div class="thank-you" style="display:block;">
-        <div class="check-circle">✓</div>
-        <h2>תודה על הזמנתך!</h2>
-        <p>קיבלנו את בחירת התפריט שלך.<br/>אנחנו נתקשר אליך בהקדם לאישור ולהבהרת מחירים.</p>
-      </div>
-      <div id="modalContent"></div>
-    </div>
+    <div class="modal-header" id="confirmTitle">ווידוא פרטים לפני שליחה</div>
+    <div class="modal-body" id="confirmText"></div>
     <div class="modal-actions">
-      <button type="button" class="secondary-btn" onclick="closeModal()">סגור</button>
+      <button type="button" class="secondary-btn" onclick="closeConfirm()">חזרה לעריכה</button>
+      <button type="button" class="submit-btn" id="finalSendBtn" onclick="sendForm()">מאשר/ת ושלח</button>
     </div>
   </div>
 </div>
 
 <script>
-// ════════════════════════════════════════════════════════════════════════════
-// UTILITIES
-// ════════════════════════════════════════════════════════════════════════════
-
-function selectRadio(element, groupId) {
-  const group = document.getElementById(groupId);
-  group.querySelectorAll('.radio-item').forEach(item => item.classList.remove('selected'));
-  element.classList.add('selected');
-  element.querySelector('input[type="radio"]').checked = true;
-  
-  // If this is the inter-courses option, update visibility
-  if (groupId === 'interOption') {
-    updateInterCoursesVisibility();
-    updateAllBadges();
+  function selectRadio(el, name) {
+    document.querySelectorAll('#' + name + ' .radio-item').forEach(r => r.classList.remove('selected'));
+    el.classList.add('selected');
+    el.querySelector('input[type="radio"]').checked = true;
+    updateSummary();
   }
-}
 
-// ════════════════════════════════════════════════════════════════════════════
-// SALAD SELECTION LOGIC
-// ════════════════════════════════════════════════════════════════════════════
+  function updateCounts() {
+    const salads = document.querySelectorAll('.salad-check:checked').length;
+    document.getElementById('saladCount').textContent = `נבחרו: ${salads} / 8`;
+    document.getElementById('saladCount').className = salads === 8 ? 'count-badge ok' : (salads > 8 ? 'count-badge err' : 'count-badge');
 
-function updateSaladCount() {
-  const checks = document.querySelectorAll('.salad-check:checked').length;
-  const badge = document.getElementById('saladCount');
-  const error = document.getElementById('saladError');
-  
-  badge.querySelector('.count-text').textContent = `נבחרו: ${checks} / 8`;
-  
-  if (checks === 8) {
-    badge.classList.add('ok');
-    error.style.display = 'none';
-  } else if (checks > 8) {
-    badge.classList.remove('ok');
-    error.style.display = 'block';
-  } else {
-    badge.classList.remove('ok');
-    error.style.display = 'none';
+    const inters = document.querySelectorAll('.inter-check:checked').length;
+    document.getElementById('interCount').textContent = `נבחרו: ${inters} / 3`;
+    document.getElementById('interCount').className = inters === 3 ? 'count-badge ok' : (inters > 3 ? 'count-badge err' : 'count-badge');
+
+    const desserts = document.querySelectorAll('.dessert-check:checked').length;
+    document.getElementById('dessertCount').textContent = `נבחרו: ${desserts} / 3`;
+    document.getElementById('dessertCount').className = desserts <= 3 ? 'count-badge ok' : 'count-badge err';
+
+    updateSummary();
   }
-  
-  // Disable checkboxes if we have 8 selected (prevent adding more)
-  const allSalads = document.querySelectorAll('.salad-check');
-  allSalads.forEach(check => {
-    if (!check.checked && checks === 8) {
-      check.disabled = true;
-    } else {
-      check.disabled = false;
+
+  function updateSummary() {
+    const guestCount = parseInt(document.getElementById('guestCount').value) || 0;
+    let total = 0;
+
+    if (document.querySelector('input[name="wineOption"]:checked')?.value === 'yes') {
+      total += guestCount * 30;
     }
-  });
-}
 
-document.querySelectorAll('.salad-check').forEach(check => {
-  check.addEventListener('change', updateSaladCount);
-});
-
-// ════════════════════════════════════════════════════════════════════════════
-// INTER-COURSES LOGIC
-// ════════════════════════════════════════════════════════════════════════════
-
-function updateInterCoursesVisibility() {
-  const interOption = document.querySelector('input[name="interOption"]:checked');
-  const container = document.getElementById('interCoursesContainer');
-  
-  if (interOption && interOption.value === 'yes') {
-    container.style.display = 'block';
-  } else {
-    container.style.display = 'none';
-    // Clear selections if hidden
-    document.querySelectorAll('.inter-check').forEach(check => check.checked = false);
-  }
-}
-
-function updateInterCount() {
-  const checks = document.querySelectorAll('.inter-check:checked').length;
-  const badge = document.getElementById('interCount');
-  const error = document.getElementById('interError');
-  
-  badge.querySelector('.count-text').textContent = `נבחרו: ${checks} / 3`;
-  
-  if (checks === 3) {
-    badge.classList.add('ok');
-    error.style.display = 'none';
-  } else if (checks > 3) {
-    badge.classList.remove('ok');
-    error.style.display = 'block';
-  } else {
-    badge.classList.remove('ok');
-    error.style.display = 'none';
-  }
-  
-  // Disable checkboxes if we have 3 selected
-  const allInter = document.querySelectorAll('.inter-check');
-  allInter.forEach(check => {
-    if (!check.checked && checks === 3) {
-      check.disabled = true;
-    } else {
-      check.disabled = false;
+    if (document.querySelector('input[name="interOption"]:checked')?.value === 'yes') {
+      total += guestCount * 40;
     }
+
+    document.getElementById('totalAmount').textContent = '₪' + total.toLocaleString('he-IL');
+    document.getElementById('mobileTotal').textContent = '₪' + total.toLocaleString('he-IL');
+
+    const isValid = document.querySelectorAll('.salad-check:checked').length === 8 &&
+                    (document.querySelector('input[name="interOption"]:checked')?.value === 'no' || 
+                     document.querySelectorAll('.inter-check:checked').length === 3);
+
+    document.getElementById('submitBtn').disabled = !isValid;
+  }
+
+  document.getElementById('guestCount')?.addEventListener('change', updateSummary);
+  document.querySelectorAll('.salad-check, .inter-check, .dessert-check').forEach(el => {
+    el.addEventListener('change', updateCounts);
   });
-}
 
-document.querySelectorAll('.inter-check').forEach(check => {
-  check.addEventListener('change', updateInterCount);
-});
+  function validateForm() {
+    const fullName = document.getElementById('fullName').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const eventDate = document.getElementById('eventDate').value;
+    const eventTime = document.getElementById('eventTime').value;
+    const guestCount = parseInt(document.getElementById('guestCount').value);
 
-// Initialize inter-courses visibility on load
-updateInterCoursesVisibility();
-
-// ════════════════════════════════════════════════════════════════════════════
-// ALL BADGES UPDATE
-// ════════════════════════════════════════════════════════════════════════════
-
-function updateAllBadges() {
-  updateSaladCount();
-  updateInterCount();
-}
-
-// ════════════════════════════════════════════════════════════════════════════
-// MODAL FUNCTIONS
-// ════════════════════════════════════════════════════════════════════════════
-
-function openModal(title, content) {
-  const modal = document.getElementById('successModal');
-  document.querySelector('.modal-header span:last-child').textContent = title;
-  document.getElementById('modalContent').innerHTML = content;
-  modal.style.display = 'flex';
-}
-
-function closeModal() {
-  document.getElementById('successModal').style.display = 'none';
-  location.reload();
-}
-
-// ════════════════════════════════════════════════════════════════════════════
-// FORM SUBMISSION
-// ════════════════════════════════════════════════════════════════════════════
-
-document.getElementById('eventForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  
-  // Basic validation
-  const saladCount = document.querySelectorAll('.salad-check:checked').length;
-  const interOption = document.querySelector('input[name="interOption"]:checked').value;
-  const interCount = document.querySelectorAll('.inter-check:checked').length;
-  
-  if (saladCount !== 8) {
-    alert('יש לבחור בדיוק 8 סלטים');
-    return;
+    if (!fullName) { alert('נא להזין שם מלא'); return false; }
+    if (!phone) { alert('נא להזין מספר טלפון'); return false; }
+    if (!/^05[0-58]\d{7}$/.test(phone.replace('-', ''))) {
+      document.getElementById('phoneError').style.display = 'block';
+      return false;
+    }
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      document.getElementById('emailError').style.display = 'block';
+      return false;
+    }
+    if (!eventDate) { alert('נא בחר תאריך אירוע'); return false; }
+    if (!eventTime) { alert('נא בחר שעת אירוע'); return false; }
+    if (isNaN(guestCount) || guestCount < 20 || guestCount > 120) {
+      document.getElementById('guestError').style.display = 'block';
+      return false;
+    }
+    if (document.querySelectorAll('.salad-check:checked').length !== 8) {
+      document.getElementById('saladError').style.display = 'block';
+      return false;
+    }
+    if (document.querySelector('input[name="interOption"]:checked')?.value === 'yes' &&
+        document.querySelectorAll('.inter-check:checked').length !== 3) {
+      document.getElementById('interError').style.display = 'block';
+      return false;
+    }
+    return true;
   }
-  
-  if (interOption === 'yes' && interCount !== 3) {
-    alert('יש לבחור בדיוק 3 מנות ביניים');
-    return;
-  }
-  
-  // Show success (in real app, would submit to server)
-  openModal('הזמנה בוצעה בהצלחה!', '<p>קיבלנו את בחירת התפריט שלך. אנחנו נתקשר אליך בהקדם.</p>');
-});
 
+  function validateAndShowConfirm() {
+    if (!validateForm()) return;
+
+    const fullName = document.getElementById('fullName').value;
+    const phone = document.getElementById('phone').value;
+    const email = document.getElementById('email').value;
+    const eventDate = document.getElementById('eventDate').value;
+    const eventTime = document.getElementById('eventTime').value;
+    const guestCount = document.getElementById('guestCount').value;
+
+    const salads = Array.from(document.querySelectorAll('.salad-check:checked')).map(el => el.value);
+    const inters = Array.from(document.querySelectorAll('.inter-check:checked')).map(el => el.value);
+    const desserts = Array.from(document.querySelectorAll('.dessert-check:checked')).map(el => el.value);
+
+    const html = `
+      <div class="modal-section">
+        <div class="modal-section-title">פרטי התקשר</div>
+        <div class="modal-section-content">
+          <strong>${fullName}</strong><br/>
+          📞 ${phone}<br/>
+          ${email ? '📧 ' + email + '<br/>' : ''}
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">פרטי אירוע</div>
+        <div class="modal-section-content">
+          📅 ${eventDate}<br/>
+          🕐 ${eventTime}<br/>
+          👥 ${guestCount} מוזמנים
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">בחירות</div>
+        <div class="modal-section-content">
+          <strong>סלטים (8):</strong> ${salads.join(', ')}<br/>
+          <strong>מנות ביניים:</strong> ${inters.length > 0 ? inters.join(', ') : 'ללא'}<br/>
+          <strong>קינוחות:</strong> ${desserts.length > 0 ? desserts.join(', ') : 'ללא'}
+        </div>
+      </div>
+    `;
+
+    document.getElementById('confirmText').innerHTML = html;
+    document.getElementById('confirmModal').style.display = 'flex';
+  }
+
+  function closeConfirm() {
+    document.getElementById('confirmModal').style.display = 'none';
+  }
+
+  function sendForm() {
+    document.getElementById('finalSendBtn').disabled = true;
+    const formData = new FormData(document.getElementById('eventForm'));
+
+    formData.append('salads', Array.from(document.querySelectorAll('.salad-check:checked')).map(el => el.value).join(', '));
+    formData.append('inters', Array.from(document.querySelectorAll('.inter-check:checked')).map(el => el.value).join(', '));
+    formData.append('desserts', Array.from(document.querySelectorAll('.dessert-check:checked')).map(el => el.value).join(', '));
+    formData.append('wine', document.querySelector('input[name="wineOption"]:checked').value);
+    formData.append('inter', document.querySelector('input[name="interOption"]:checked').value);
+    formData.append('equipment', Array.from(document.querySelectorAll('.equipment-check:checked')).map(el => el.value).join(', '));
+
+    fetch('https://formspree.io/f/xyzezanb', {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+      document.getElementById('confirmModal').style.display = 'none';
+      document.getElementById('eventForm').style.display = 'none';
+      document.querySelector('.page-body').innerHTML = `
+        <div style="flex:1;">
+          <div class="section-card">
+            <div style="background: linear-gradient(135deg, #2e7d32, #4caf50); color: white; padding: 40px 30px; text-align: center; border-radius: 10px;">
+              <div style="font-size: 72px; margin-bottom: 16px;">✓</div>
+              <h2 style="font-size: 32px; margin-bottom: 12px; color: white;">הטופס נשלח בהצלחה!</h2>
+              <p style="font-size: 16px; line-height: 1.7; color: #f0f0f0;">
+                קיבלנו את בחירת התפריט ופרטי האירוע.<br/>
+                <strong>הבקשה תיבדק על ידי המסעדה</strong><br/>
+                נחזור אליך בהקדם לאישור סופי ודגשים.
+              </p>
+              <div style="margin-top: 24px; padding: 16px; background: rgba(255,255,255,0.1); border-radius: 8px; font-size: 14px;">
+                <strong>פרטי התקשר:</strong><br/>
+                📞 טל': 03-9627111<br/>
+                📞 ניב: 050-6536629<br/>
+                📧 מייל: zedefr@gmail.com
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    })
+    .catch(error => {
+      alert('שגיאה בשליחה. אנא נסה שוב או צור קשר ישירות למסעדה.');
+      document.getElementById('finalSendBtn').disabled = false;
+    });
+  }
+
+  document.getElementById('phone')?.addEventListener('blur', () => {
+    document.getElementById('phoneError').style.display = 'none';
+  });
+  document.getElementById('email')?.addEventListener('blur', () => {
+    document.getElementById('emailError').style.display = 'none';
+  });
+  document.getElementById('guestCount')?.addEventListener('blur', () => {
+    document.getElementById('guestError').style.display = 'none';
+  });
 </script>
 
 </body>
