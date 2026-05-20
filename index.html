@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
@@ -1715,6 +1716,12 @@ ${kids > 0 ? 'ילדים: ' + kids + ' × ' + fmt(baseKid) + ' = ' + fmt(kidsTot
   }
 
   async function sendForm() {
+    // Guard: final button should only send after the exact same validation passes.
+    if (!validateForm()) {
+      closeConfirm();
+      return;
+    }
+
     const btn = document.getElementById('finalSendBtn');
     const spinner = document.getElementById('sendSpinner');
     const btnText = document.getElementById('sendBtnText');
@@ -1747,23 +1754,58 @@ ${kids > 0 ? 'ילדים: ' + kids + ' × ' + fmt(baseKid) + ' = ' + fmt(kidsTot
         notes: v('notes'),
       };
 
-      // Send to management system
-      await fetch('https://6a0b0f1e49068f30aabb1f2d.base44.app/functions/receiveEventForm', {
+      const emailPayload = {
+        _subject: 'בקשת אירוע חדשה — ' + v('fullName') + ' | ' + v('eventDate'),
+        _template: 'table',
+        _captcha: 'false',
+        _replyto: v('email') || '',
+
+        name: v('fullName'),
+        email: v('email') || 'no-reply@zedef.co.il',
+
+        'שם מלא': structuredData.full_name || '—',
+        'טלפון': structuredData.phone || '—',
+        'אימייל לקוח': structuredData.email || '—',
+        'חברה / ארגון': structuredData.company || '—',
+        'תאריך האירוע': structuredData.event_date + ' — ' + getDayText(),
+        'שעת האירוע': structuredData.event_time || '—',
+        'מספר מוזמנים': structuredData.guest_count,
+        'מנות ילדים': structuredData.kids_count,
+        'סוג האירוע': structuredData.event_type || '—',
+        'סידור ישיבה': structuredData.seating_style || '—',
+        'ציוד / צרכים מיוחדים': structuredData.equipment.join(', ') || '—',
+        'יין ובירה': structuredData.wine_option ? 'כן' : 'לא',
+        'מנות ביניים': structuredData.inter_option ? 'כן' : 'לא',
+        'סלטים': structuredData.salads.join(', ') || '—',
+        'מנות ביניים שנבחרו': structuredData.inter_option ? (structuredData.inter_dishes.join(', ') || '—') : 'ללא',
+        'מנות עיקריות': structuredData.main_dishes.join(', ') || '—',
+        'תוספות': structuredData.side_dishes.join(', ') || '—',
+        'דיאטות / רגישויות': structuredData.diet_flags.join(', ') || '—',
+        'אלרגיות / בקשות מיוחדות': structuredData.allergies || '—',
+        'הערות נוספות': structuredData.notes || '—',
+        'סיכום מלא': pendingBody
+      };
+
+      const emailResponse = await fetch('https://formsubmit.co/ajax/zedefr@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(emailPayload)
+      });
+
+      const emailResult = await emailResponse.json().catch(() => ({}));
+      if (!emailResponse.ok || emailResult.success === false || emailResult.success === 'false') {
+        throw new Error(emailResult.message || 'Email submission failed');
+      }
+
+      // Keep the original management-system submission, but do not let it block email success.
+      fetch('https://6a0b0f1e49068f30aabb1f2d.base44.app/functions/receiveEventForm', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(structuredData)
-      });
-
-      // Also send email notification (best effort)
-      fetch('https://6a01bc0bf7391ac07f7a853e.base44.app/functions/sendEventEmail', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          to: 'zedefr@gmail.com',
-          subject: 'בקשת אירוע חדשה — ' + v('fullName') + ' | ' + v('eventDate'),
-          body: pendingBody
-        })
-      }).catch(() => {}); // don't block if email fails
+      }).catch(() => {});
 
       closeConfirm();
       document.getElementById('eventForm').style.display = 'none';
